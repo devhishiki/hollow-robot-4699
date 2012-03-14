@@ -69,7 +69,7 @@ def fbapi_auth(code):
                               
     #Add(2012/3/14):renew access_token
     print "DEBUG:result=%s" %(result)
-    print result["error"]
+    print json.loads(result)["error"]
     """
     if result:
     	print "TEST"
