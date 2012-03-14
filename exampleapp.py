@@ -67,7 +67,7 @@ def fbapi_auth(code):
                               encode_func=simple_dict_serialisation)
                               
     #Add(2012/3/14):renew access_token
-    print "DEBUG:access_token=%s" %(result[error])
+    print "DEBUG:access_token=%s" %(result["error"])
     """
     if result:
     	print "TEST"
