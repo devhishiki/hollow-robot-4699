@@ -72,7 +72,7 @@ def fbapi_auth(code):
         if json.loads(result)["error"]:
             if json.loads(result)["error"]["type"] == "OAuthException":
                 print "INFO:Access_token is old.Get new access_token.%s" %(oauth_login_url(next_url=get_home()))
-                print "DEBUG:%s" %( redirect(oauth_login_url(next_url=get_home())))
+                print "DEBUG:%s" %( oauth_login_url(next_url=get_home()))
                 return redirect(oauth_login_url(next_url=get_home()))
             else:
                 print "ERROR:other error has happened"
@@ -130,8 +130,9 @@ def get_home():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.args.get('code', None):
-        print "DEBUG:request.args.get('code')=%s" %(request.args.get('code'))
-
+        #print "DEBUG:request.args.get('code')=%s" %(request.args.get('code'))
+        print "DEBUG:fbapi_auth=%s" %(fbapi_auth(request.args.get('code'))[)
+        
         access_token = fbapi_auth(request.args.get('code'))[0]
 
         me = fb_call('me', args={'access_token': access_token})
