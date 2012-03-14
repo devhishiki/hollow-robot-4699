@@ -125,6 +125,7 @@ def get_home():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """
     if request.args.get('code', None):
         print "DEBUG:request.args.get('code')=%s" %(request.args.get('code'))
 
@@ -162,6 +163,9 @@ def index():
     else:
         print oauth_login_url(next_url=get_home())
         return redirect(oauth_login_url(next_url=get_home()))
+    """
+    print oauth_login_url(next_url=get_home())
+    return redirect(oauth_login_url(next_url=get_home()))
 
 @app.route('/channel.html', methods=['GET', 'POST'])
 def get_channel():
