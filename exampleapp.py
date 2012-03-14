@@ -67,7 +67,7 @@ def fbapi_auth(code):
                               encode_func=simple_dict_serialisation)
     
     #Add(2012/3/14):renew access_token
-    #print "DEBUG:result=%s" %(json.loads(result)["error"])
+    print "DEBUG:result=%s" %(result)
     if json.loads(result)["error"]:
         if json.loads(result)["error"]["type"] == "OAuthException":
             print "INFO:Access_token is old.Get new access_token.%s" %(oauth_login_url(next_url=get_home()))
