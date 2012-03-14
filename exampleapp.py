@@ -131,7 +131,7 @@ def get_home():
 def index():
     if request.args.get('code', None):
         #print "DEBUG:request.args.get('code')=%s" %(request.args.get('code'))
-        print "DEBUG:fbapi_auth=%s" %(fbapi_auth(request.args.get('code'))[)
+        print "DEBUG:fbapi_auth=%s" %(fbapi_auth(request.args.get('code')))
         
         access_token = fbapi_auth(request.args.get('code'))[0]
 
