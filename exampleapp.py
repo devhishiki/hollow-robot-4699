@@ -66,7 +66,8 @@ def fbapi_auth(code):
     pairs = result.split("&", 1)
     result_dict = {}
     for pair in pairs:
-    	print "DEBUG:result=%s" %(result)
+    	print "DEBUG:params=%s" %(params)
+     	print "DEBUG:result=%s" %(result)
     	print "DEBUG:pair=%s" %(pair)
         (key, value) = pair.split("=")
         result_dict[key] = value
