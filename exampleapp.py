@@ -66,6 +66,8 @@ def fbapi_auth(code):
     pairs = result.split("&", 1)
     result_dict = {}
     for pair in pairs:
+    	print pair
+    	print "DEBUG:•¶Žš—ñ"
         (key, value) = pair.split("=")
         result_dict[key] = value
     return (result_dict["access_token"], result_dict["expires"])
