@@ -134,11 +134,12 @@ def index():
         #print "DEBUG:request.args.get('code')=%s" %(request.args.get('code'))
         
         access_tokens = fbapi_auth(request.args.get('code'))
-        print "DEBUG:access_tokens=%s" %(access_tokens)
         if access_tokens == "renew":
             access_token = fbapi_auth(request.args.get('code'))[0]
         else:
             access_token = access_tokens[0]
+
+        print "DEBUG:access_token=%s" %(access_token)
 
         me = fb_call('me', args={'access_token': access_token})
         app = fb_call(FBAPI_APP_ID, args={'access_token': access_token})
