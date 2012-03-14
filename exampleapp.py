@@ -70,13 +70,11 @@ def fbapi_auth(code):
     #Add(2012/3/14):renew access_token
     print "DEBUG:result=%s" %(result)
     print json.loads(result)["error"]["type"]
-    """
-    if result:
-    	print "TEST"
-	else:
+    if json.loads(result)["error"]["type"] == "OAuthException":
+        print "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+    else:
         print oauth_login_url(next_url=get_home())
         return redirect(oauth_login_url(next_url=get_home()))
-	"""
     
     pairs = result.split("&", 1)
     result_dict = {}
