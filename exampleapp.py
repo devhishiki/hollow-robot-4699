@@ -136,7 +136,7 @@ def index():
         access_tokens = fbapi_auth(request.args.get('code'))
         print "DEBUG:access_tokens=%s" %(access_tokens)
         if access_tokens == "renew":
-            return
+            access_token = fbapi_auth(request.args.get('code'))[0]
         else:
             access_token = access_tokens[0]
 
