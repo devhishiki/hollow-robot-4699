@@ -65,12 +65,13 @@ def fbapi_auth(code):
     #print "DEBUG:params=%s" %(params)
     result = fbapi_get_string(path=u"/oauth/access_token?", params=params,
                               encode_func=simple_dict_serialisation)
-                              
+    """                      
     #Add(2012/3/14):renew access_token
     #print "DEBUG:result=%s" %(result)
     if json.loads(result)["error"]["type"] == "OAuthException":
         print "INFO:Access_token is old.Get new access_token.%s" %(oauth_login_url(next_url=get_home()))
         return redirect(oauth_login_url(next_url=get_home()))
+    """
     
     pairs = result.split("&", 1)
     result_dict = {}
