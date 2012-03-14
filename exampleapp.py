@@ -69,7 +69,7 @@ def fbapi_auth(code):
     #Add(2012/3/14):renew access_token
     print "DEBUG:result=%s" %(result)
     try:
-    if json.loads(result)["error"]:
+        if json.loads(result)["error"]:
             if json.loads(result)["error"]["type"] == "OAuthException":
                 print "INFO:Access_token is old.Get new access_token.%s" %(oauth_login_url(next_url=get_home()))
                 print "DEBUG:%s" %(redirect(oauth_login_url(next_url=get_home())))
