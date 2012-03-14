@@ -77,7 +77,7 @@ def fbapi_auth(code):
             else:
                 print "ERROR:other error has happened"
     except JSONDecodeError:
-                print "INFO:JSONDecodeError caused."
+        print "INFO:JSONDecodeError caused."
     
     pairs = result.split("&", 1)
     result_dict = {}
