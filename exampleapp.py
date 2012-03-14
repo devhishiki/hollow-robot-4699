@@ -63,7 +63,7 @@ def fbapi_auth(code):
               'client_secret': app.config['FBAPI_APP_SECRET'],
               'code': code}
 
-	print "DEBUG:params=%s" %(params)
+    print "DEBUG:params=%s" %(params)
     result = fbapi_get_string(path=u"/oauth/access_token?", params=params,
                               encode_func=simple_dict_serialisation)
                               
