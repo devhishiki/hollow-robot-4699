@@ -50,6 +50,7 @@ def fbapi_get_string(path,
     url = u'https://' + domain + u'.facebook.com' + path
     params_encoded = encode_func(params)
     url = url + params_encoded
+    print "DEBUG:url=%s" %(url)
     result = requests.get(url).content
 
     return result
@@ -69,7 +70,8 @@ def fbapi_auth(code):
     	print "DEBUG:params=%s" %(params)
      	print "DEBUG:result=%s" %(result)
     	print "DEBUG:pair=%s" %(pair)
-        (key, value) = pair.split("=")
+        (key, value) = pair.split(":")
+        #(key, value) = pair.split("=")
         result_dict[key] = value
     return (result_dict["access_token"], result_dict["expires"])
 
