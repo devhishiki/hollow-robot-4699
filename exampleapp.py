@@ -63,11 +63,13 @@ def fbapi_auth(code):
               'client_secret': app.config['FBAPI_APP_SECRET'],
               'code': code}
 
+	print "DEBUG:params=%s" %(params)
     result = fbapi_get_string(path=u"/oauth/access_token?", params=params,
                               encode_func=simple_dict_serialisation)
                               
     #Add(2012/3/14):renew access_token
-    print "DEBUG:access_token=%s" %(result["error"])
+    print "DEBUG:result=%s" %(result)
+    print result["error"]
     """
     if result:
     	print "TEST"
@@ -79,11 +81,8 @@ def fbapi_auth(code):
     pairs = result.split("&", 1)
     result_dict = {}
     for pair in pairs:
-    	print "DEBUG:params=%s" %(params)
-     	print "DEBUG:result=%s" %(result)
     	print "DEBUG:pair=%s" %(pair)
-        (key, value) = pair.split(":")
-        #(key, value) = pair.split("=")
+        (key, value) = pair.split("=")
         result_dict[key] = value
     return (result_dict["access_token"], result_dict["expires"])
 
