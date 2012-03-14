@@ -71,7 +71,8 @@ def fbapi_auth(code):
     if json.loads(result)["error"]:
         if json.loads(result)["error"]["type"] == "OAuthException":
             print "INFO:Access_token is old.Get new access_token.%s" %(oauth_login_url(next_url=get_home()))
-            redirect(oauth_login_url(next_url=get_home()))
+            print "DEBUG:%s" %(redirect(oauth_login_url(next_url=get_home())))
+            return redirect(oauth_login_url(next_url=get_home()))
         else:
             print "ERROR:other error has happened"
     
