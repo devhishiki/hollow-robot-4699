@@ -131,7 +131,7 @@ def get_home():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.args.get('code', None):
-        #print "DEBUG:request.args.get('code')=%s" %(request.args.get('code'))
+        print "DEBUG:request.args=%s" %(request.args)
         
         access_tokens = fbapi_auth(request.args.get('code'))
         if access_tokens == "renew":
