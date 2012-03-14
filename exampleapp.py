@@ -65,6 +65,16 @@ def fbapi_auth(code):
 
     result = fbapi_get_string(path=u"/oauth/access_token?", params=params,
                               encode_func=simple_dict_serialisation)
+                              
+    #Add(2012/3/14):renew access_token
+    print "DEBUG:access_token=%s" %(result[error])
+    if result:
+    	print "TEST"
+	else:
+        print oauth_login_url(next_url=get_home())
+        return redirect(oauth_login_url(next_url=get_home()))
+
+    
     pairs = result.split("&", 1)
     result_dict = {}
     for pair in pairs:
