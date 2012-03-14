@@ -118,7 +118,7 @@ def get_home():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    print get_home()
+    print "INFO:%s" %(get_home())
     if request.args.get('code', None):
         access_token = fbapi_auth(request.args.get('code'))[0]
 
