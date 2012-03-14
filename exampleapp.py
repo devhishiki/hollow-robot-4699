@@ -76,7 +76,7 @@ def fbapi_auth(code):
                 return redirect(oauth_login_url(next_url=get_home()))
             else:
                 print "ERROR:other error has happened"
-    except JSONDecodeError:
+    except json.JSONDecodeError:
         print "INFO:JSONDecodeError caused."
     
     pairs = result.split("&", 1)
