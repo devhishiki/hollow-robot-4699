@@ -50,8 +50,7 @@ def fbapi_get_string(path,
     url = u'https://' + domain + u'.facebook.com' + path
     params_encoded = encode_func(params)
     url = url + params_encoded
-    print "DEBUG:url=%s" %(FBAPI_APP_ID)
-    print "DEBUG:url=%s" %(url)
+    #print "DEBUG:url=%s" %(url)
     result = requests.get(url).content
 
     return result
@@ -63,23 +62,20 @@ def fbapi_auth(code):
               'client_secret': app.config['FBAPI_APP_SECRET'],
               'code': code}
 
-    print "DEBUG:params=%s" %(params)
+    #print "DEBUG:params=%s" %(params)
     result = fbapi_get_string(path=u"/oauth/access_token?", params=params,
                               encode_func=simple_dict_serialisation)
                               
     #Add(2012/3/14):renew access_token
-    print "DEBUG:result=%s" %(result)
-    print json.loads(result)["error"]["type"]
-    if json.loads(result)["error"]["type"] == "OAuthException":
-        print "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-    else:
-        print oauth_login_url(next_url=get_home())
+    #print "DEBUG:result=%s" %(result)
+    if json.loads(result)["error"]["type"] != "OAuthException":
+        print "INFO:Access_token is old.Get new access_token.%s" %(oauth_login_url(next_url=get_home()))
         return redirect(oauth_login_url(next_url=get_home()))
     
     pairs = result.split("&", 1)
     result_dict = {}
     for pair in pairs:
-    	print "DEBUG:pair=%s" %(pair)
+    	#print "DEBUG:pair=%s" %(pair)
         (key, value) = pair.split("=")
         result_dict[key] = value
     return (result_dict["access_token"], result_dict["expires"])
@@ -126,8 +122,6 @@ def get_home():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    print "INFO:%s" %(get_home())
-    print request.args.get('code', None)
     if request.args.get('code', None):
         access_token = fbapi_auth(request.args.get('code'))[0]
 
