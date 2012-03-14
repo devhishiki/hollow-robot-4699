@@ -123,6 +123,8 @@ def get_home():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.args.get('code', None):
+        print "DEBUG:request.args.get('code')=%s" %(request.args.get('code'))
+
         access_token = fbapi_auth(request.args.get('code'))[0]
 
         me = fb_call('me', args={'access_token': access_token})
