@@ -72,7 +72,7 @@ def fbapi_auth(code):
         if json.loads(result)["error"]:
             if json.loads(result)["error"]["type"] == "OAuthException":
                 print "INFO:Access_token is old.Get new access_token.%s" %(oauth_login_url(next_url=get_home()))
-                print "DEBUG:%s" %(redirect(oauth_login_url(next_url=get_home())))
+                #print "DEBUG:%s" %(redirect(oauth_login_url(next_url=get_home())))
                 return redirect(oauth_login_url(next_url=get_home()))
             else:
                 print "ERROR:other error has happened"
@@ -97,7 +97,7 @@ def fbapi_get_application_access_token(id):
 
     token = token.split('=')[-1]
     if not str(id) in token:
-        print 'Token mismatch: %s not in %s' % (id, token)
+        print 'INFO:Token mismatch: %s not in %s' % (id, token)
     return token
 
 
@@ -164,7 +164,7 @@ def index():
             friends=friends, photos=photos, app_friends=app_friends, app=app,
             me=me, POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url)
     else:
-        print oauth_login_url(next_url=get_home())
+        print "INFO:%s" %(oauth_login_url(next_url=get_home()))
         return redirect(oauth_login_url(next_url=get_home()))
 
 
@@ -182,4 +182,4 @@ if __name__ == '__main__':
     if app.config.get('FBAPI_APP_ID') and app.config.get('FBAPI_APP_SECRET'):
         app.run(host='0.0.0.0', port=port)
     else:
-        print 'Cannot start application without Facebook App Id and Secret set'
+        print 'ERROR:Cannot start application without Facebook App Id and Secret set'
